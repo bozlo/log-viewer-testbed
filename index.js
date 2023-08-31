@@ -4,20 +4,23 @@ import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 
 const LineChart = () => {
-  var cat = ['A', 'B', 'C'];
+  var linenumber = [];
+  for (var i = 1; i <= 20; i++) {
+    linenumber.push(i);
+  }
   const [hoverData, setHoverData] = useState(null);
   const [chartOptions, setChartOptions] = useState({
     title: { text: 'Multi-Decode' },
     xAxis: {
       crosshair: true,
-      categories: cat,
+      categories: linenumber,
     },
     yAxis: {
       minorGridLineWidth: 0,
       gridLineWidth: 0,
       alternateGridColor: null,
       min: 0,
-      max: 5,
+      max: 1,
       title: {
         text: '',
       },
@@ -51,7 +54,18 @@ const LineChart = () => {
         fontSize: '10px',
       },
     },
-    series: [{ data: [1, 2, 3] }, { data: [4, 1, 5] }],
+    series: [
+      {
+        data: [0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0],
+        name: '1st decoder',
+        label: { enabled: false },
+      },
+      {
+        data: [1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+        name: '2nd decoder',
+        label: { enabled: false },
+      },
+    ],
     chart: {
       type: 'area',
     },
